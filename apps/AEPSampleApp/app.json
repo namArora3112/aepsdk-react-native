@@ -1,4 +1,19 @@
 {
   "name": "AEPSampleApp",
-  "displayName": "AEPSampleApp"
+  "displayName": "AEPSampleApp",
+  "android": {
+    "package": "com.anonymous.aepsampleapp"
+  },
+  "ios": {
+    "bundleIdentifier": "com.anonymous.aepsampleapp"
+  },
+  "plugins": [
+    [
+      "aepsdk-expo-plugin",
+      {
+        "environmentFileId": "example",
+        "logLevel": "DEBUG"
+      }
+    ]
+  ]
 }

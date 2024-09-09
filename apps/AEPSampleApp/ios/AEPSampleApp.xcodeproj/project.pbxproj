@@ -14,6 +14,8 @@
 		1B59F67A2BB4EE8B00ED6F0D /* dummy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B59F6792BB4EE8B00ED6F0D /* dummy.swift */; };
 		7699B88040F8A987B510C191 /* libPods-aepsampleapp-aepsampleappTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 19F6CBCC0A4E27FBF8BF4A61 /* libPods-aepsampleapp-aepsampleappTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		171915C394E74AD68A6BB7EE /* noop-file.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96A1FD28ABC24EE5A04DB321 /* noop-file.swift */; };
+		6C4DD2098D5943CCA7230F6F /* AdobeBridge.m in Sources */ = {isa = PBXBuildFile; fileRef = FC61820755F94F9989B0306C /* AdobeBridge.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +47,10 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = aepsampleapp/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89C6BE57DB24E9ADA2F236DE /* Pods-aepsampleapp-aepsampleappTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-aepsampleapp-aepsampleappTests.release.xcconfig"; path = "Target Support Files/Pods-aepsampleapp-aepsampleappTests/Pods-aepsampleapp-aepsampleappTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
+		96A1FD28ABC24EE5A04DB321 /* noop-file.swift */ = {isa = PBXFileReference; name = "noop-file.swift"; path = "AEPSampleApp/noop-file.swift"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.swift; explicitFileType = undefined; includeInIndex = 0; };
+		7526419ECA3F4D38988DBAEA /* SplashScreen.storyboard */ = {isa = PBXFileReference; name = "SplashScreen.storyboard"; path = "AEPSampleApp/SplashScreen.storyboard"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		7949C2BC40A54B7780481CC4 /* AdobeBridge.h */ = {isa = PBXFileReference; name = "AdobeBridge.h"; path = "AEPSampleApp/AdobeBridge.h"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; explicitFileType = undefined; includeInIndex = undefined; };
+		3F97E326F7DB476DA28A22B4 /* AdobeBridge.m */ = {isa = PBXFileReference; name = "AdobeBridge.m"; path = "AEPSampleApp/AdobeBridge.m"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; explicitFileType = undefined; includeInIndex = undefined; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +130,8 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				BBD78D7AC51CEA395F1C20DB /* Pods */,
+				96A1FD28ABC24EE5A04DB321 /* noop-file.swift */,
+				7526419ECA3F4D38988DBAEA /* SplashScreen.storyboard */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -245,6 +253,7 @@
 			files = (
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				7C65E411CDE642F0866D706C /* SplashScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,7 +274,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nWITH_ENVIRONMENT=\"../node_modules/react-native/scripts/xcode/with-environment.sh\"\nREACT_NATIVE_XCODE=\"../node_modules/react-native/scripts/react-native-xcode.sh\"\n\n/bin/sh -c \"$WITH_ENVIRONMENT $REACT_NATIVE_XCODE\"\n";
+			shellScript = "if [[ -f \"$PODS_ROOT/../.xcode.env\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env\"\nfi\nif [[ -f \"$PODS_ROOT/../.xcode.env.local\" ]]; then\n  source \"$PODS_ROOT/../.xcode.env.local\"\nfi\n\n# The project root by default is one level up from the ios directory\nexport PROJECT_ROOT=\"$PROJECT_DIR\"/..\n\nif [[ \"$CONFIGURATION\" = *Debug* ]]; then\n  export SKIP_BUNDLING=1\nfi\nif [[ -z \"$ENTRY_FILE\" ]]; then\n  # Set the entry JS file using the bundler's entry resolution.\n  export ENTRY_FILE=\"$(\"$NODE_BINARY\" -e \"require('expo/scripts/resolveAppEntry')\" \"$PROJECT_ROOT\" ios absolute | tail -n 1)\"\nfi\n\nif [[ -z \"$CLI_PATH\" ]]; then\n  # Use Expo CLI\n  export CLI_PATH=\"$(\"$NODE_BINARY\" --print \"require.resolve('@expo/cli')\")\"\nfi\nif [[ -z \"$BUNDLE_COMMAND\" ]]; then\n  # Default Expo CLI command for bundling\n  export BUNDLE_COMMAND=\"export:embed\"\nfi\n\n`\"$NODE_BINARY\" --print \"require('path').dirname(require.resolve('react-native/package.json')) + '/scripts/react-native-xcode.sh'\"`\n";
 		};
 		00EEFC60759A1932668264C0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -396,6 +405,10 @@
 				13B07FBC1A68108700A75B9A /* AppDelegate.mm in Sources */,
 				1B59F67A2BB4EE8B00ED6F0D /* dummy.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
+				171915C394E74AD68A6BB7EE /* noop-file.swift in Sources */,
+				6C4DD2098D5943CCA7230F6F /* AdobeBridge.m in Sources */,
+				3F97E326F7DB476DA28A22B4 /* AdobeBridge.m in Sources */,
+				3F97E326F7DB476DA28A22B4 /* AdobeBridge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,18 +436,24 @@
 				INFOPLIST_FILE = aepsampleappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
 					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aepsampleapp.app/aepsampleapp";
+				TARGETED_DEVICE_FAMILY = "1";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					-fcxx-modules,
+					-Wno-module-import-in-extern-c,
+				);
 			};
 			name = Debug;
 		};
@@ -448,18 +467,24 @@
 				INFOPLIST_FILE = aepsampleappTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
 				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
 					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
 				);
 				OTHER_LDFLAGS = (
 					"-ObjC",
 					"-lc++",
 					"$(inherited)",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/aepsampleapp.app/aepsampleapp";
+				TARGETED_DEVICE_FAMILY = "1";
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					-fcxx-modules,
+					-Wno-module-import-in-extern-c,
+				);
 			};
 			name = Release;
 		};
@@ -473,8 +498,8 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = aepsampleapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
 					"$(inherited)",
-					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_CPLUSPLUSFLAGS = (
@@ -490,12 +515,15 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = aepsampleapp;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_DEBUG";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anonymous.aepsampleapp";
+				PRODUCT_NAME = "AEPSampleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "aepsampleapp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				TARGETED_DEVICE_FAMILY = "1";
+				CODE_SIGN_ENTITLEMENTS = AEPSampleApp/aepsampleapp.entitlements;
 			};
 			name = Debug;
 		};
@@ -508,8 +536,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = aepsampleapp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
+					/usr/lib/swift,
 					"$(inherited)",
-					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_LDFLAGS = (
@@ -517,11 +545,19 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
-				PRODUCT_NAME = aepsampleapp;
+				OTHER_SWIFT_FLAGS = "$(inherited) -D EXPO_CONFIGURATION_RELEASE";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.anonymous.aepsampleapp";
+				PRODUCT_NAME = "AEPSampleApp";
 				SWIFT_OBJC_BRIDGING_HEADER = "aepsampleapp-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
+				TARGETED_DEVICE_FAMILY = "1";
+				CODE_SIGN_ENTITLEMENTS = AEPSampleApp/aepsampleapp.entitlements;
+				OTHER_CPLUSPLUSFLAGS = (
+					"$(inherited)",
+					-fcxx-modules,
+					-Wno-module-import-in-extern-c,
+				);
 			};
 			name = Release;
 		};
