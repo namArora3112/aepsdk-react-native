@@ -11,7 +11,7 @@
     "android": "react-native run-android",
     "ios": "react-native run-ios",
     "lint": "eslint .",
-    "start": "react-native start",
+    "start": "expo start --dev-client",
     "test": "jest"
   },
   "dependencies": {
@@ -34,6 +34,8 @@
     "@react-navigation/native": "^6.1.8",
     "@react-navigation/routers": "^6.1.9",
     "@react-navigation/stack": "^6.3.18",
+    "aepsdk-expo-plugin": "/Users/namarora/Documents/DevDemos/Actual-Sdk/aepsdk-expo-plugin/plugin/aepsdk-expo-plugin-0.1.1-alpha.3.tgz",
+    "expo-modules-core": "^1.12.24",
     "lodash.isequal": "^4.5.0",
     "react": "18.2.0",
     "react-native": "0.73.6",
@@ -43,7 +45,9 @@
     "react-native-screens": "^3.30.1",
     "react-native-webview": "^13.8.2",
     "recyclerlistview": "^4.2.0",
-    "ts-object-utils": "0.0.5"
+    "ts-object-utils": "0.0.5",
+    "expo": "~51.0.28",
+    "expo-status-bar": "~1.12.1"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0",
