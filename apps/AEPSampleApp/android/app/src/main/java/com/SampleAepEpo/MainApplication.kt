@@ -8,17 +8,31 @@ the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR REPRESENTA
 OF ANY KIND, either express or implied. See the License for the specific language
 governing permissions and limitations under the License.
 */
-package com.aepsampleapp
+package com.SampleAepEpo
 
 import android.app.Application
 import com.adobe.marketing.mobile.AdobeCallback
 import com.adobe.marketing.mobile.Assurance
 import com.adobe.marketing.mobile.Edge
 import com.adobe.marketing.mobile.Extension
+// Adobe SDKs imports start
 import com.adobe.marketing.mobile.Lifecycle
+import com.adobe.marketing.mobile.Signal
+import com.adobe.marketing.mobile.Identity
+import android.util.Log
 import com.adobe.marketing.mobile.LoggingMode
+import com.adobe.marketing.mobile.Assurance
+import com.adobe.marketing.mobile.CampaignClassic
+import com.adobe.marketing.mobile.Edge
+import com.adobe.marketing.mobile.EdgeBridge
+import com.adobe.marketing.mobile.edge.consent.Consent
 import com.adobe.marketing.mobile.Messaging
+import com.adobe.marketing.mobile.Optimize
+import com.adobe.marketing.mobile.Places
+import com.adobe.marketing.mobile.Target
+import com.adobe.marketing.mobile.UserProfile
 import com.adobe.marketing.mobile.MobileCore
+// Adobe SDKs imports end
 import com.adobe.marketing.mobile.Places
 import com.adobe.marketing.mobile.Signal
 import com.adobe.marketing.mobile.Target
@@ -63,6 +77,18 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
+         
+      MobileCore.setApplication(this);
+      MobileCore.configureWithAppID("example");
+      MobileCore.setLogLevel(LoggingMode.DEBUG);
+    
+        
+      val extensions = listOf(Lifecycle.EXTENSION, Signal.EXTENSION, Identity.EXTENSION, Assurance.EXTENSION, CampaignClassic.EXTENSION, Edge.EXTENSION, EdgeBridge.EXTENSION, Consent.EXTENSION, com.adobe.marketing.mobile.edge.identity.Identity.EXTENSION, Messaging.EXTENSION, Optimize.EXTENSION, Places.EXTENSION, Target.EXTENSION, UserProfile.EXTENSION)
+      MobileCore.registerExtensions(extensions) {
+        // Use the extensions in your app
+        Log.d("CoreExtensions", "Extensions registered successfully");
+      }
+    
     SoLoader.init(this, false)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.
