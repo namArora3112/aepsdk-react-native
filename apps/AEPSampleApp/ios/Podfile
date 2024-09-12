@@ -31,7 +31,16 @@ target 'aepsampleapp' do
     # Pods for testing
   end
 
-  post_install do |installer|
+  post_install do |installer| 
+      # Added by Adobe Expo SDK Plugin
+      installer.pods_project.targets.each do |t|
+          if t.name.start_with?("AEP")
+            t.build_configurations.each do |bc|
+                bc.build_settings['OTHER_SWIFT_FLAGS'] = '$(inherited) -no-verify-emitted-module-interface'
+            end
+          end
+      end
+    
     # https://github.com/facebook/react-native/blob/main/packages/react-native/scripts/react_native_pods.rb#L197-L202
     react_native_post_install(
       installer,
