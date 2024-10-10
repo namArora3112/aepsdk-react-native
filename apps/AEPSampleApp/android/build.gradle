@@ -9,13 +9,31 @@ buildscript {
     }
     repositories {
         google()
+        maven {
+            def detoxPath = "$rootDir/../node_modules/detox/Detox-android"
+            println "Detox Android Path: $detoxPath"
+            url detoxPath
+        }
         mavenCentral()
     }
     dependencies {
         classpath("com.android.tools.build:gradle")
         classpath("com.facebook.react:react-native-gradle-plugin")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion")
     }
 }
 
 apply plugin: "com.facebook.react.rootproject"
+
+// Add the following `allprojects` section to integrate Detox
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            def detoxPath = "$rootDir/../node_modules/detox/Detox-android"
+            println "Detox Android Path: $detoxPath"
+            url detoxPath
+        }
+    }
+}
