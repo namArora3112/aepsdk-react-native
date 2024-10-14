@@ -15,18 +15,18 @@
     "test": "jest"
   },
   "dependencies": {
-    "@adobe/react-native-aepassurance": "^6.0.0",
-    "@adobe/react-native-aepcampaignclassic": "^6.0.0",
-    "@adobe/react-native-aepcore": "^6.0.0",
-    "@adobe/react-native-aepedge": "^6.0.0",
-    "@adobe/react-native-aepedgebridge": "^6.0.0",
-    "@adobe/react-native-aepedgeconsent": "^6.0.0",
-    "@adobe/react-native-aepedgeidentity": "^6.0.0",
-    "@adobe/react-native-aepmessaging": "^6.0.0",
-    "@adobe/react-native-aepoptimize": "^6.0.0",
-    "@adobe/react-native-aepplaces": "^6.0.0",
-    "@adobe/react-native-aeptarget": "^6.0.0",
-    "@adobe/react-native-aepuserprofile": "^6.0.0",
+    "@adobe/react-native-aepcore": "file:../../packages/core",
+    "@adobe/react-native-aepassurance": "file:../../packages/assurance",
+    "@adobe/react-native-aepcampaignclassic": "file:../../packages/campaignclassic",
+    "@adobe/react-native-aepedge": "file:../../packages/edge",
+    "@adobe/react-native-aepedgebridge": "file:../../packages/edgebridge",
+    "@adobe/react-native-aepedgeconsent": "file:../../packages/edgeconsent",
+    "@adobe/react-native-aepedgeidentity": "file:../../packages/edgeidentity",
+    "@adobe/react-native-aepmessaging": "file:../../packages/messaging",
+    "@adobe/react-native-aepoptimize": "file:../../packages/optimize",
+    "@adobe/react-native-aepplaces": "file:../../packages/places",
+    "@adobe/react-native-aeptarget": "file:../../packages/target",
+    "@adobe/react-native-aepuserprofile": "file:../../packages/userprofile",
     "@react-native-masked-view/masked-view": "^0.3.1",
     "@react-navigation/bottom-tabs": "^6.5.9",
     "@react-navigation/core": "^6.4.9",
@@ -62,6 +62,9 @@
     "prettier": "2.8.8",
     "react-test-renderer": "18.2.0",
     "typescript": "5.0.4"
+  },
+  "resolutions": {
+    "@adobe/react-native-aepcore": "file:../../packages/core/src"
   },
   "engines": {
     "node": ">=16"
