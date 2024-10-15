@@ -33,6 +33,7 @@ function HomeScreen({navigation}: NavigationProps) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
       <Button
+        testID='CORE_BUTTON'
         onPress={() => navigation.navigate('CoreView')}
         title="Core/Lifecycle/Signal"
       />
