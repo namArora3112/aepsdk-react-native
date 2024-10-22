@@ -1,4 +1,24 @@
-package com.anonymous.AEPSampleAppNewArchEnabled
+package com.anonymous.AEPSampleAppNewArchEnabled;
+
+// Adobe SDKs imports start
+import com.adobe.marketing.mobile.Lifecycle
+import com.adobe.marketing.mobile.Signal
+import android.util.Log
+import com.adobe.marketing.mobile.LoggingMode
+import com.adobe.marketing.mobile.Assurance
+import com.adobe.marketing.mobile.CampaignClassic
+import com.adobe.marketing.mobile.Edge
+import com.adobe.marketing.mobile.edge.bridge.EdgeBridge
+import com.adobe.marketing.mobile.edge.consent.Consent
+import com.adobe.marketing.mobile.edge.identity.Identity
+import com.adobe.marketing.mobile.Messaging
+import com.adobe.marketing.mobile.optimize.Optimize
+import com.adobe.marketing.mobile.Places
+import com.adobe.marketing.mobile.Target
+import com.adobe.marketing.mobile.UserProfile
+import com.adobe.marketing.mobile.MobileCore
+// Adobe SDKs imports end
+
 
 import android.app.Application
 import android.content.res.Configuration
@@ -14,27 +34,6 @@ import com.facebook.soloader.SoLoader
 
 import expo.modules.ApplicationLifecycleDispatcher
 import expo.modules.ReactNativeHostWrapper
-
-import java.util.Arrays
-//MainApplication.java
-import com.adobe.marketing.mobile.AdobeCallback
-import com.adobe.marketing.mobile.Assurance
-import com.adobe.marketing.mobile.Edge
-import com.adobe.marketing.mobile.Extension
-import com.adobe.marketing.mobile.Lifecycle
-import com.adobe.marketing.mobile.LoggingMode
-import com.adobe.marketing.mobile.Messaging
-import com.adobe.marketing.mobile.MobileCore
-import com.adobe.marketing.mobile.Places
-import com.adobe.marketing.mobile.Signal
-import com.adobe.marketing.mobile.Target
-import com.adobe.marketing.mobile.UserProfile
-import com.adobe.marketing.mobile.edge.bridge.EdgeBridge
-import com.adobe.marketing.mobile.edge.consent.Consent
-import com.adobe.marketing.mobile.edge.identity.Identity
-import com.adobe.marketing.mobile.optimize.Optimize
-
-
 
 class MainApplication : Application(), ReactApplication {
 
@@ -61,31 +60,18 @@ class MainApplication : Application(), ReactApplication {
 
   override fun onCreate() {
     super.onCreate()
-
+         
       MobileCore.setApplication(this);
-    MobileCore.setLogLevel(LoggingMode.DEBUG)
-    MobileCore.configureWithAppID("94f571f308d5/12dfd4531236/launch-7560fa0e7fdd-development")
-    val extensions: List<Class<out Extension?>> = Arrays.asList(
-      Lifecycle.EXTENSION,
-      Signal.EXTENSION,
-      Edge.EXTENSION,
-      Identity.EXTENSION,
-      Consent.EXTENSION,
-      EdgeBridge.EXTENSION,
-      Messaging.EXTENSION,
-      UserProfile.EXTENSION,
-      Assurance.EXTENSION,
-      Places.EXTENSION,
-      Target.EXTENSION,
-      Optimize.EXTENSION,
-      com.adobe.marketing.mobile.Identity.EXTENSION
-    )
-    MobileCore.registerExtensions(extensions,
-      AdobeCallback { o: Any? ->
-        MobileCore.lifecycleStart(
-          null
-        )
-      })
+      MobileCore.configureWithAppID("example");
+      MobileCore.setLogLevel(LoggingMode.DEBUG);
+    
+        
+      val extensions = listOf(Lifecycle.EXTENSION, Signal.EXTENSION, Assurance.EXTENSION, CampaignClassic.EXTENSION, Edge.EXTENSION, EdgeBridge.EXTENSION, Consent.EXTENSION, Identity.EXTENSION, Messaging.EXTENSION, Optimize.EXTENSION, Places.EXTENSION, Target.EXTENSION, UserProfile.EXTENSION)
+      MobileCore.registerExtensions(extensions) {
+        // Use the extensions in your app
+        Log.d("CoreExtensions", "Extensions registered successfully");
+      }
+    
     SoLoader.init(this, false)
     if (BuildConfig.IS_NEW_ARCHITECTURE_ENABLED) {
       // If you opted-in for the New Architecture, we load the native entry point for this app.

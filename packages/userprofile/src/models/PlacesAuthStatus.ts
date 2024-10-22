@@ -10,18 +10,16 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import UserProfile from './UserProfile';
-import PlacesAuthStatus from './models/PlacesAuthStatus';
-import PlacesGeofence from './models/PlacesGeofence';
-import PlacesGeofenceTransitionType from './models/PlacesGeofenceTransitionType';
-import PlacesLocation from './models/PlacesLocation';
-import PlacesPOI from './models/PlacesPOI';
-export { 
-    UserProfile, 
-    PlacesAuthStatus,
-    PlacesGeofence,
-    PlacesGeofenceTransitionType,
-    PlacesLocation,
-    PlacesPOI
+/**
+ * Represents the current authorization status of location services of your application.
+ * Used EventData for Places Events and Shared State.
+ */
+enum PlacesAuthStatus {
+  ALWAYS = 'PLACES_AUTH_STATUS_ALWAYS',
+  DENIED = 'PLACES_AUTH_STATUS_DENIED',
+  RESTRICTED = 'PLACES_AUTH_STATUS_RESTRICTED',
+  UNKNOWN = 'PLACES_AUTH_STATUS_UNKNOWN',
+  WHEN_IN_USE = 'PLACES_AUTH_STATUS_WHEN_IN_USE'
+}
 
- };
+export default PlacesAuthStatus;

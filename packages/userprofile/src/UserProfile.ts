@@ -10,15 +10,31 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import { NativeModules } from 'react-native';
+import { NativeModules, Platform } from 'react-native';
+import PlacesLocation from './models/PlacesLocation';
+import PlacesAuthStatus from './models/PlacesAuthStatus';
+import PlacesGeofence from './models/PlacesGeofence';
+import PlacesPOI from './models/PlacesPOI';
 
 interface IUserProfile {
   extensionVersion: () => Promise<string>;
+  extensionVersionPlaces: () => Promise<string>;
   removeUserAttributes: (attributeNames: Array<string>) => void;
   getUserAttributes: (
     attributeNames: Array<string>
   ) => Promise<Record<string, any>>;
   updateUserAttributes: (attributeMap: Record<string, any>) => void;
+   
+  // all places package apis 
+  getNearbyPointsOfInterest: (
+    location: PlacesLocation,
+    limit: number
+  ) => Promise<Array<PlacesPOI>>;
+  processGeofence: (geofence: PlacesGeofence, transitionType: number) => void;
+  getCurrentPointsOfInterest: () => Promise<Array<PlacesPOI>>;
+  getLastKnownLocation: () => Promise<PlacesLocation>;
+  clear: () => void;
+  setAuthorizationStatus: (authStatus?: PlacesAuthStatus) => void;
 }
 
 const RCTAEPUserProfile: IUserProfile = NativeModules.AEPUserProfile;
@@ -31,6 +47,13 @@ const UserProfile: IUserProfile = {
   extensionVersion(): Promise<string> {
     return Promise.resolve(RCTAEPUserProfile.extensionVersion());
   },
+
+
+  async extensionVersionPlaces(): Promise<string> {
+    console.log("i am in the new extension version api  ")
+    return await RCTAEPUserProfile.extensionVersionPlaces();
+  },
+
 
   /**
    * UserProfile API to remove the give attribute names
@@ -65,7 +88,37 @@ const UserProfile: IUserProfile = {
    */
   updateUserAttributes(attributeMap: Record<string, any>) {
     RCTAEPUserProfile.updateUserAttributes(attributeMap);
-  }
+  },
+
+// all places apis 
+
+getNearbyPointsOfInterest(
+  location: PlacesLocation,
+  limit: number
+): Promise<Array<PlacesPOI>> {
+  return RCTAEPUserProfile.getNearbyPointsOfInterest(location, limit);
+},
+
+processGeofence(geofence: PlacesGeofence, transitionType: number): void {
+  RCTAEPUserProfile.processGeofence(geofence, Platform.OS === 'android' ? transitionType + 1 : transitionType); // Enums are not equal across platforms
+},
+
+getCurrentPointsOfInterest(): Promise<Array<PlacesPOI>> {
+  return RCTAEPUserProfile.getCurrentPointsOfInterest();
+},
+
+getLastKnownLocation(): Promise<PlacesLocation> {
+  return RCTAEPUserProfile.getLastKnownLocation();
+},
+
+clear() {
+  RCTAEPUserProfile.clear();
+},
+setAuthorizationStatus(authStatus?: PlacesAuthStatus) {
+  RCTAEPUserProfile.setAuthorizationStatus(authStatus);
+}
+
+
 };
 
 export default UserProfile;

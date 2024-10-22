@@ -27,6 +27,7 @@ import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.ReadableMap;
 import com.facebook.react.bridge.WritableArray;
 import com.facebook.react.bridge.WritableNativeArray;
+import android.util.Log;
 
 import android.location.Location;
 
@@ -48,6 +49,9 @@ public class RCTAEPPlacesModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void extensionVersion(final Promise promise) {
+    Log.d("AEPEdgeBridgeModule", "Fetching Places Extension Version CHECK _____________");
+
+
     promise.resolve(Places.extensionVersion());
   }
 

@@ -12,7 +12,7 @@ governing permissions and limitations under the License.
 
 import React from 'react';
 import {Button, Text, View, ScrollView} from 'react-native';
-import {UserProfile} from '@adobe/react-native-aepuserprofile';
+import {UserProfile } from '@adobe/react-native-aepuserprofile';
 import styles from '../styles/styles';
 import { useRouter } from 'expo-router';
 

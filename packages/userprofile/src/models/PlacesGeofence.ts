@@ -10,18 +10,29 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import UserProfile from './UserProfile';
-import PlacesAuthStatus from './models/PlacesAuthStatus';
-import PlacesGeofence from './models/PlacesGeofence';
-import PlacesGeofenceTransitionType from './models/PlacesGeofenceTransitionType';
-import PlacesLocation from './models/PlacesLocation';
-import PlacesPOI from './models/PlacesPOI';
-export { 
-    UserProfile, 
-    PlacesAuthStatus,
-    PlacesGeofence,
-    PlacesGeofenceTransitionType,
-    PlacesLocation,
-    PlacesPOI
+/**
+ * Represents a geofence location that will emit events when exited and entered
+ */
+class PlacesGeofence {
+  identifier: string;
+  latitude: number;
+  longitude: number;
+  radius: number;
+  expirationDuration: number;
 
- };
+  constructor(
+    identifier: string,
+    latitude: number,
+    longitude: number,
+    radius: number,
+    expirationDuration: number
+  ) {
+    this.identifier = identifier;
+    this.latitude = latitude;
+    this.longitude = longitude;
+    this.radius = radius;
+    this.expirationDuration = expirationDuration;
+  }
+}
+
+export default PlacesGeofence;

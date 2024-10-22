@@ -12,14 +12,15 @@ governing permissions and limitations under the License.
 
 import React from 'react';
 import {Button, ScrollView, Text, View} from 'react-native';
-import {
-  Places,
-  PlacesAuthStatus,
-  PlacesGeofence,
-  PlacesGeofenceTransitionType,
-  PlacesLocation,
-} from '@adobe/react-native-aepplaces';
+// import {
+//   Places,
+//   PlacesAuthStatus,
+//   PlacesGeofence,
+//   PlacesGeofenceTransitionType,
+//   PlacesLocation,
+// } from '@adobe/react-native-aepplaces';
 import {NavigationProps} from '../types/props';
+import { UserProfile } from '@adobe/react-native-aepuserprofile';
 import styles from '../styles/styles';
 
 const EXAMPLE_LATITUDE = 37.3325958;
@@ -28,55 +29,55 @@ const EXAMPLE_GEOFENCE_ID = '82e2eb52-e925-41a3-9d50-418a2e015608';
 const EXAMPLE_RADIUS = 50;
 
 const extensionVersion = async () => {
-  const version = await Places.extensionVersion();
+  const version = await UserProfile.extensionVersionPlaces();
   console.log('AdobeExperienceSDK: Places version: ' + version);
 };
 
-const getNearbyPointsOfInterest = async () => {
-  const location = new PlacesLocation(EXAMPLE_LONGITUDE, EXAMPLE_LATITUDE);
-  try {
-    const pois = await Places.getNearbyPointsOfInterest(location, 2);
-    console.log(
-      `AdobeExperienceSDK: Places pois: ${pois[0]?.['name'] || '[]'}`,
-    );
-  } catch (e) {
-    console.log(`AdobeExperienceSDK: Places error: ${e}`);
-  }
-};
+// const getNearbyPointsOfInterest = async () => {
+//   const location = new PlacesLocation(EXAMPLE_LONGITUDE, EXAMPLE_LATITUDE);
+//   try {
+//     const pois = await Places.getNearbyPointsOfInterest(location, 2);
+//     console.log(
+//       `AdobeExperienceSDK: Places pois: ${pois[0]?.['name'] || '[]'}`,
+//     );
+//   } catch (e) {
+//     console.log(`AdobeExperienceSDK: Places error: ${e}`);
+//   }
+// };
 
-const processGeofence = () => {
-  const geofence = new PlacesGeofence(
-    EXAMPLE_GEOFENCE_ID,
-    EXAMPLE_LATITUDE,
-    EXAMPLE_LONGITUDE,
-    EXAMPLE_RADIUS,
-    10,
-  );
-  Places.processGeofence(geofence, PlacesGeofenceTransitionType.EXIT);
-  console.log('Geofence processed');
-};
+// const processGeofence = () => {
+//   const geofence = new PlacesGeofence(
+//     EXAMPLE_GEOFENCE_ID,
+//     EXAMPLE_LATITUDE,
+//     EXAMPLE_LONGITUDE,
+//     EXAMPLE_RADIUS,
+//     10,
+//   );
+//   Places.processGeofence(geofence, PlacesGeofenceTransitionType.EXIT);
+//   console.log('Geofence processed');
+// };
 
-const getCurrentPointsOfInterest = async () => {
-  const pois = await Places.getCurrentPointsOfInterest();
-  console.log(`AdobeExperienceSDK: Places pois: ${pois[0]?.['name'] || '[]'}`);
-};
+// const getCurrentPointsOfInterest = async () => {
+//   const pois = await Places.getCurrentPointsOfInterest();
+//   console.log(`AdobeExperienceSDK: Places pois: ${pois[0]?.['name'] || '[]'}`);
+// };
 
-const getLastKnownLocation = async () => {
-  const location = await Places.getLastKnownLocation();
-  console.log(
-    `AdobeExperienceSDK: Places location: ${JSON.stringify(location)}`,
-  );
-};
+// const getLastKnownLocation = async () => {
+//   const location = await Places.getLastKnownLocation();
+//   console.log(
+//     `AdobeExperienceSDK: Places location: ${JSON.stringify(location)}`,
+//   );
+// };
 
-const clear = () => {
-  Places.clear();
-  console.log('cleared');
-};
+// const clear = () => {
+//   Places.clear();
+//   console.log('cleared');
+// };
 
-const setAuthorizationStatus = () => {
-  Places.setAuthorizationStatus(PlacesAuthStatus.ALWAYS);
-  console.log('Authorization status set');
-};
+// const setAuthorizationStatus = () => {
+//   Places.setAuthorizationStatus(PlacesAuthStatus.ALWAYS);
+//   console.log('Authorization status set');
+// };
 
 const PlacesView = ({navigation: {goBack}}: NavigationProps) => {
   return (
@@ -85,7 +86,7 @@ const PlacesView = ({navigation: {goBack}}: NavigationProps) => {
         <Button onPress={goBack} title="Go to main page" />
         <Text style={styles.welcome}>Places</Text>
         <Button title="extensionVersion()" onPress={extensionVersion} />
-        <Button
+        {/* <Button
           title="getNearbyPointsOfInterest()"
           onPress={getNearbyPointsOfInterest}
         />
@@ -99,7 +100,7 @@ const PlacesView = ({navigation: {goBack}}: NavigationProps) => {
           title="setAuthorizationStatus()"
           onPress={setAuthorizationStatus}
         />
-        <Button title="clear" onPress={clear} />
+        <Button title="clear" onPress={clear} /> */}
       </ScrollView>
     </View>
   );

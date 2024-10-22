@@ -10,18 +10,12 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import UserProfile from './UserProfile';
-import PlacesAuthStatus from './models/PlacesAuthStatus';
-import PlacesGeofence from './models/PlacesGeofence';
-import PlacesGeofenceTransitionType from './models/PlacesGeofenceTransitionType';
-import PlacesLocation from './models/PlacesLocation';
-import PlacesPOI from './models/PlacesPOI';
-export { 
-    UserProfile, 
-    PlacesAuthStatus,
-    PlacesGeofence,
-    PlacesGeofenceTransitionType,
-    PlacesLocation,
-    PlacesPOI
+/**
+ * The event status of the geofence trigger, specifies whether geofence was entered or exited
+ */
+enum PlacesGeofenceTransitionType {
+  ENTER,
+  EXIT,
+}
 
- };
+export default PlacesGeofenceTransitionType;
