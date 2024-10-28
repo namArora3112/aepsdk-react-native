@@ -1,0 +1,36 @@
+{
+  "name": "aepsampleappexponewarch",
+  "license": "0BSD",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "start": "expo start --dev-client",
+    "android": "expo run:android",
+    "ios": "expo run:ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "expo": "~52.0.0-preview.5",
+    "expo-status-bar": "~2.0.0",
+    "react": "18.3.1",
+    "react-native": "0.76.0",
+    "@adobe/react-native-aepassurance": "^6.0.2",
+    "@adobe/react-native-aepcampaignclassic": "^6.0.2",
+    "@adobe/react-native-aepcore": "^6.0.2",
+    "@adobe/react-native-aepedge": "^6.0.2",
+    "@adobe/react-native-aepedgebridge": "^6.0.2",
+    "@adobe/react-native-aepedgeconsent": "^6.0.2",
+    "@adobe/react-native-aepedgeidentity": "^6.0.2",
+    "@adobe/react-native-aepmessaging": "^6.0.3",
+    "@adobe/react-native-aepoptimize": "^6.0.3",
+    "@adobe/react-native-aepplaces": "^6.0.2",
+    "@adobe/react-native-aeptarget": "^6.0.2",
+    "@adobe/react-native-aepuserprofile": "^6.0.2",
+    "typescript": "^5.3.3",
+    "@types/react": "~18.3.12"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0"
+  },
+  "private": true
+}

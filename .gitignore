@@ -160,3 +160,6 @@ out/
 # Ignore VSCode settings
 .vscode/
 .vscode/settings.json
+
+# Ignore .DS_Store in apps directory
+apps/.DS_Store
