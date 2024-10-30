@@ -27,7 +27,6 @@
     "@adobe/react-native-aepplaces": "file:/Users/namarora/Documents/Dev/aepsdk-react-native/packages/places",
     "@adobe/react-native-aeptarget": "file:/Users/namarora/Documents/Dev/aepsdk-react-native/packages/target",
     "@adobe/react-native-aepuserprofile": "file:/Users/namarora/Documents/Dev/aepsdk-react-native/packages/userprofile",
-
     "@expo/vector-icons": "^14.0.2",
     "@react-navigation/bottom-tabs": "^6.5.9",
     "@react-navigation/core": "^6.4.9",

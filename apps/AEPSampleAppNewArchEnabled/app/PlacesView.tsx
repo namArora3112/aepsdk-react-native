@@ -21,7 +21,6 @@ import {
 } from '@adobe/react-native-aepplaces';
 import {NavigationProps} from '../types/props';
 import styles from '../styles/styles';
-
 const EXAMPLE_LATITUDE = 37.3325958;
 const EXAMPLE_LONGITUDE = -121.8910217;
 const EXAMPLE_GEOFENCE_ID = '82e2eb52-e925-41a3-9d50-418a2e015608';
@@ -113,3 +112,5 @@ const PlacesView = () => {
 };
 
 export default PlacesView;
+
+
