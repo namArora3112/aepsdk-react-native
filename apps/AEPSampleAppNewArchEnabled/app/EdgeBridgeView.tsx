@@ -16,7 +16,7 @@ import {EdgeBridge} from '@adobe/react-native-aepedgebridge';
 import {MobileCore} from '@adobe/react-native-aepcore';
 import styles from '../styles/styles';
 import {NavigationProps} from '../types/props';
-import { Stack, useRouter } from 'expo-router';
+import {  useRouter } from 'expo-router';
 
 
 const EdgeBridgeView = ({navigation}: NavigationProps) => {
