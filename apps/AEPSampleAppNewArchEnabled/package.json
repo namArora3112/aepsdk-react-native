@@ -34,6 +34,7 @@
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/routers": "^6.1.9",
     "@react-navigation/stack": "^6.3.18",
+    "additionalpackage": "file:/Users/namarora/Documents/Dev/aepsdk-react-native/packages/additionalPackage",
     "expo": "~51.0.28",
     "expo-build-properties": "~0.12.5",
     "expo-constants": "~16.0.2",

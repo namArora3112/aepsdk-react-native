@@ -10,7 +10,7 @@ OF ANY KIND, either express or implied. See the License for the specific languag
 governing permissions and limitations under the License.
 */
 
-import React from 'react';
+import { useState, useEffect } from 'react';
 import {Button, ScrollView, Text, View} from 'react-native';
 import {
   Places,
@@ -25,18 +25,10 @@ const EXAMPLE_LATITUDE = 37.3325958;
 const EXAMPLE_LONGITUDE = -121.8910217;
 const EXAMPLE_GEOFENCE_ID = '82e2eb52-e925-41a3-9d50-418a2e015608';
 const EXAMPLE_RADIUS = 50;
-
-const extensionVersion = async () => {
-
-  Places.extensionVersion().then(version =>
-    console.log('AdobeExperienceSDK: Places view  version: ' + version),
-  );
+import { multiply, extensionVersion } from 'additionalpackage';
 
 
-  // Places.extensionVersion().then(version =>
-  //   console.log('AdobeExperienceSDK: places extension version: ' + version),
-  // );
-};
+
 
 const getNearbyPointsOfInterest = async () => {
   const location = new PlacesLocation(EXAMPLE_LONGITUDE, EXAMPLE_LATITUDE);
@@ -85,12 +77,23 @@ const setAuthorizationStatus = () => {
 };
 
 const PlacesView = () => {
+  const [version, setVersion] = useState<string | null>(null);
+  const fetchExtensionVersion = async () => {
+    try {
+      const ver = await extensionVersion();
+      setVersion(ver);
+    } catch (error) {
+      console.error("Failed to fetch extension version:", error);
+    }
+  };
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={{marginTop: 75}}>
         <Button onPress={()=>{}} title="Go to main page" />
         <Text style={styles.welcome}>Places</Text>
-        <Button title="extensionVersion()" onPress={extensionVersion} />
+        <Button title="extensionVersion()" onPress={fetchExtensionVersion} />
+        {version && <Text>Extension Version: {version}</Text>}
+
         <Button
           title="getNearbyPointsOfInterest()"
           onPress={getNearbyPointsOfInterest}

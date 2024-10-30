@@ -1,5 +1,13 @@
 import { NativeModules, Platform } from 'react-native';
 
+// import Places from './Places';
+// import PlacesAuthStatus from './models/PlacesAuthStatus';
+// import PlacesGeofence from './models/PlacesGeofence';
+// import PlacesGeofenceTransitionType from './models/PlacesGeofenceTransitionType';
+// import PlacesLocation from './models/PlacesLocation';
+// import PlacesPOI from './models/PlacesPOI';
+
+
 const LINKING_ERROR =
   `The package 'additionalpackage' doesn't seem to be linked. Make sure: \n\n` +
   Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
@@ -33,3 +41,5 @@ export function multiply(a: number, b: number): Promise<number> {
 export function extensionVersion(): Promise<string> {
   return Additionalpackage.extensionVersion();
 }
+
+
