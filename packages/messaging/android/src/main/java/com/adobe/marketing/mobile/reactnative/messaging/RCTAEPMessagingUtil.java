@@ -175,7 +175,7 @@ class RCTAEPMessagingUtil {
   static Map convertMessageToMap(final Message message) {
     Map data = new HashMap<>();
     data.put("id", message.getId());
-    data.put("autoTrack", message.getAutoTrack());
+    data.put("autoTrack", String.valueOf(message.getAutoTrack()));
     return data;
   }
 
