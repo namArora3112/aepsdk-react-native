@@ -55,6 +55,11 @@ export default function HomeScreen() {
         title="Target"
       />
 
+      <Button
+        onPress={() => navigation.navigate('PlacesView')}
+        title="Places"
+      />
+
     </View>
   );
 }
