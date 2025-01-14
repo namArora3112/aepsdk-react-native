@@ -38,7 +38,7 @@ Go to the **root directory** and run scripts
 > Note: Commands are assuming you're in the root directory of the repository.
 
 ```
-yarn sampleapp:ios:pod:install
+yarn install && yarn sampleapp:ios:pod:install
 ```
 
 ### Build packages
