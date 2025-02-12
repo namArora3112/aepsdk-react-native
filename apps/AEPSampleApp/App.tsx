@@ -28,14 +28,24 @@ import TargetView from './extensions/TargetView';
 import PlacesView from './extensions/PlacesView';
 import {NavigationProps} from './types/props';
 import CampaignClassicView from './extensions/CampaignClassicView';
-// import { multiply } from 'newturbomoduletest';
+ import {multiply} from 'react-native-awesome-library';
+
+//import { multiply } from 'newturbomoduletest';
 // const result = multiply(3, 7);
+
+const handleButton = ()=>{
+   console.log(multiply(10,2));
+}
 
 function HomeScreen({navigation}: NavigationProps) {
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
             {/* <Text>Result: {result}</Text> */}
 
+            <Button
+        onPress={handleButton}
+        title="cool"
+      />
       <Button
         onPress={() => navigation.navigate('CoreView')}
         title="Core/Lifecycle/Signal"

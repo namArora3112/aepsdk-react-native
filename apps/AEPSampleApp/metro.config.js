@@ -1,22 +1,3 @@
-// const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
-
-// /**
-//  * Metro configuration
-//  * https://reactnative.dev/docs/metro
-//  *
-//  * @type {import('metro-config').MetroConfig}
-//  */
-// const config = {};
-
-// module.exports = mergeConfig(getDefaultConfig(__dirname), config);
-
-
-
-/**
- * Metro configuration for React Native
- * https://github.com/facebook/react-native
- */
-
 const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config');
 const { resolve, join } = require('path');
 
@@ -29,7 +10,10 @@ const config = {
             },
         }),
     },
-    watchFolders: [resolve(__dirname, '../../packages')],
+    watchFolders: [
+        resolve(__dirname, '../../packages'), 
+        resolve(__dirname, '../../packages/awesome-library') // Add your package here
+    ],
     resolver: {
         extraNodeModules: new Proxy(
             {},
@@ -46,6 +30,9 @@ const config = {
                         const packageName = name.replace('@adobe/react-native-aep', '');
                         console.log('------packageName -> ' + packageName);
                         return join(__dirname, `../../packages/${packageName}`);
+                    }
+                    if (name === 'react-native-awesome-library') {
+                        return resolve(__dirname, '../../packages/awesome-library'); // Add your package here
                     }
                     return join(__dirname, `node_modules/${name}`);
                 },
