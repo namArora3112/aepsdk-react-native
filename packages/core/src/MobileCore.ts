@@ -36,6 +36,11 @@ interface IMobileCore {
   setAppGroup: (appGroup?: string) => void;
   resetIdentities: () => void;
   clearUpdatedConfiguration: () => void;
+  // initialize: (param: any, callback?: () => void) => void;
+  // initializeWithAppId: (appId: string,adobeCallback: any) => Promise<any>;
+  initializeWithAppId: (appId: string) => Promise<any>;
+
+  
 }
 
 const RCTAEPCore: IMobileCore = NativeModules.AEPCore;
@@ -49,6 +54,9 @@ const MobileCore: IMobileCore = {
     return Promise.resolve(RCTAEPCore.extensionVersion());
   },
 
+  initializeWithAppId(appId: string): Promise<any> {
+    return RCTAEPCore.initializeWithAppId(appId);
+  },
   /**
    * Load remote configuration specified by the given application ID
    *

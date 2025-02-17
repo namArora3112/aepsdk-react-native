@@ -15,7 +15,9 @@ import com.adobe.marketing.mobile.AdobeCallback;
 import com.adobe.marketing.mobile.AdobeCallbackWithError;
 import com.adobe.marketing.mobile.AdobeError;
 import com.adobe.marketing.mobile.Event;
+import com.adobe.marketing.mobile.InitOptions;
 import com.adobe.marketing.mobile.services.Log;
+
 import com.adobe.marketing.mobile.LoggingMode;
 import com.adobe.marketing.mobile.MobileCore;
 import com.adobe.marketing.mobile.MobilePrivacyStatus;
@@ -62,6 +64,56 @@ public class RCTAEPCoreModule extends ReactContextBaseJavaModule {
     public void configureWithAppId(final String appId) {
         MobileCore.configureWithAppID(appId);
     }
+
+//    @ReactMethod
+//    public void initialize(Object param, AdobeCallbackWithError<Void> callback) {
+//        if (param instanceof String) {
+////            Log.d(LOG_TAG, "Initializing with appId: " + param);
+//            Log.debug(getName(), "RCTAEPCoreModule", "Initializing with appId"+param);
+//
+//            MobileCore.initialize((Application) reactContext.getApplicationContext(), (String) param, callback);
+//        } else if (param instanceof InitOptions) {
+////            Log.d(LOG_TAG, "Initializing with InitOptions");
+//            Log.debug(getName(), "RCTAEPCoreModule", "Initializin init options");
+//            MobileCore.initialize((Application) reactContext.getApplicationContext(), (InitOptions) param, callback);
+//        } else {
+//            Log.debug(getName(), "RCTAEPCoreModule", "got new errors ");
+//
+//        }
+//    }
+// @ReactMethod
+// public void initializeWithAppId(String appId, final Promise promise) {
+//     Log.d(LOG_TAG, "Initializing with appId: " + appId);
+//     MobileCore.initialize(reactContext.getApplicationContext(), appId, new AdobeCallbackWithError<Void>() {
+//         @Override
+//         public void call(Void value) {
+//             promise.resolve(null);
+//         }
+
+//         @Override
+//         public void fail(AdobeError adobeError) {
+//             promise.reject(adobeError.getErrorName(), adobeError.getErrorMessage());
+//         }
+//     });
+// }
+@ReactMethod
+public void initializeWithAppId(String appId, final Promise promise) {
+//    Log.debug(LOG_TAG, "Initializing with appId: " + appId);
+    Log.debug(getName(), "Initializing with appId" ,appId);
+
+    MobileCore.initialize((Application) reactContext.getApplicationContext(), appId, new AdobeCallbackWithError<Void>() {
+        @Override
+        public void call(Void value) {
+            promise.resolve(null);
+        }
+
+        @Override
+        public void fail(AdobeError adobeError) {
+            promise.reject(getName(), "ISSUE CALLBACK", new Error("ISSUE CALLBACK"));
+
+        }
+    });
+}
 
     @ReactMethod
     public void clearUpdatedConfiguration() {
